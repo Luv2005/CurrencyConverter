@@ -1,6 +1,6 @@
 import React from 'react';
 
-function InputBox(
+function InputBox({
     label,
     amount ,
     onAmountChange,
@@ -10,7 +10,7 @@ function InputBox(
     amountDisable = false,
     currencyDisable = false,
     className = "" 
-) {
+}) {
     
     return (
         <>
@@ -33,13 +33,13 @@ function InputBox(
                     <select
                         className="rounded-lg px-1 py-1 bg-gray-100 cursor-pointer outline-none"
                         value = {selectCurrency}
-                        onchange= {(e) => onCurrencyChange(e.target.value)}
+                        onChange= {(e) => onCurrencyChange(e.target.value)}
                         disabled = {currencyDisable}>
-                    {currencyOptions.map((currency) =>{
+                    {currencyOptions.map((currency) =>(
                         <option value = {currency} key = {currency}>
                             {currency}
                         </option>
-                    })}
+                    ))}
                     </select>
                 </div>
             </div>

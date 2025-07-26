@@ -1,24 +1,24 @@
 import { useState, useEffect } from 'react';
 
 function useCurrencyInfo(currency) {
-  const [data, setData] = useState({}); // Avoid using null to prevent runtime errors
+  const [rates, setRates] = useState({});
 
   useEffect(() => {
     const fetchCurrencyInfo = async () => {
       try {
         const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${currency}`);
-        const newData = await response.json();
-        console.log(newData);
-        setData(newData.rates); // only store rates for simplicity
-      } catch (error) {
-        console.error("Failed to fetch currency info:", error);
+        const json = await response.json();
+        setRates(json.rates);
+     
+      } catch (err) {
+        console.error("Currency fetch failed:", err);
       }
     };
-
-    fetchCurrencyInfo(); // ✅ Call the function
+    fetchCurrencyInfo(); // 🚀 Make this call!
   }, [currency]);
 
-  return data;
+  return rates;
 }
 
 export default useCurrencyInfo;
+
